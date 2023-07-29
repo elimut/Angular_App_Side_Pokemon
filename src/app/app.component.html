@@ -1,0 +1,77 @@
+<!-- <h1>Liste de Pokémons</h1>
+<p>Ceci est un paragraphe</p>
+<p>Ceci est un paragraphe</p>
+<p>Ceci est un paragraphe</p> -->
+<!-- template statique, non lié à la logique métier côtée TS -->
+
+<!-- <h1>Liste de Pokémons</h1>
+<p>{{ pokemonList[0]}}</p>
+<p>{{ pokemonList[1]}}</p>
+<p>{{ pokemonList[2]}}</p>
+<p>{{ pokemonList[11]}}</p> -->
+<!-- renvoie [object Object] car tout le POKEMONS est passé -->
+<!-- <h1 class="center">Liste de Pokémons</h1> -->
+<!-- <input 
+    type="number"
+    (click)="selectPokemon($event)" -->
+<!-- /> -->
+<!-- !$event-- event remonté par le DOM, , erreur car selectPokemon accepte un pokémon => changer contrat -->
+<!-- <input 
+    #input
+    (keyup)="0"
+    type="text"
+/>
+#input déclaration de variable référencée dans le template 
+<p>{{ input.value }}</p>
+interpolation pour afficher directement le contenu tapé par l'user -->
+<!-- <input 
+    #input
+    (keyup.enter)="selectPokemon(input.value)"
+    type="number"
+/>
+<--input.value transmet une chaîne de caractère avec l'index saisi par l'user -->
+<!-- <p> Vous avez sélectionné le pokémon: {{ pokemonSelected?.name }}</p> -->
+<!--à l'init du composant pokemonSelected n'est pas défini donc =undefined, on dmd à accèder à la prop name undefined => erreur => ? si n'est pas déf n'affiche rien
+<p *ngIf="pokemonSelected" class="pink-text text-accent-2"> 
+    Vous avez sélectionné le pokémon: {{ pokemonSelected?.name }}.
+</p>
+<p *ngIf="!pokemonSelected" class="pink-text text-accent-2"> 
+    Aucun pokémon n'a été trouvé.
+</p> -->
+
+<!-- <p>{{ pokemonList[0].name }}</p>
+<p>{{ pokemonList[1].name }}</p>
+<p>{{ pokemonList[2].name }}</p>
+<p>{{ pokemonList[3].name }}</p>
+<p>{{ pokemonList[4].name }}</p>
+<p>{{ pokemonList[5].name }}</p>
+<p>{{ pokemonList[6].name }}</p>
+<p>{{ pokemonList[7].name }}</p>
+<p>{{ pokemonList[8].name }}</p>
+<p>{{ pokemonList[9].name }}</p>
+<p>{{ pokemonList[10].name }}</p>
+<p>{{ pokemonList[11].name }}</p> -->
+
+<!-- <p *ngFor="let pokemon of pokemonList" class="pink-text text-darken-4, container">
+    {{ pokemon.name }}
+</p> -->
+<!-- directive structurelle *, tableau doit venir de la classe du composant -->
+<!-- <div *ngFor="let pokemon of pokemonList" class="card-panel pink lighten-4">
+    <p class="pink-text text-darken-4, container">
+        {{ pokemon.name }}
+    </p>
+    <div>
+        <img src="{{ pokemon.picture }}" alt="Pokemon image">
+    </div>
+</div> -->
+
+<nav>
+    <div class="nav-wrapper pink lighten-5">
+        <a href="/pokemons" class="brand-logo center">
+            Pokédex Anne-Sophie
+        </a>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>
+
