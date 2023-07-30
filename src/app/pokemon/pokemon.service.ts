@@ -16,6 +16,7 @@ export class PokemonService {
 constructor(private http: HttpClient) {
 
 }
+private baseUrl = 'http://localhost:8080/';
 
   // getPokemonList(): Pokemon [] {
   //   // renvoie model
@@ -24,7 +25,7 @@ constructor(private http: HttpClient) {
   // }
   getPokemonList(): Observable<Pokemon[]> {
     // réception d'une donnée qui va rriver dans le temps qui contient un tab de pokemon, on ne retourne pas directement les pokémons. On retourne un flux
-    return this.http.get<Pokemon[]>('api/pokemons').pipe(
+    return this.http.get<Pokemon[]>('https://localhost:3000/api/pokemons').pipe(
         // tap((pokemonList) => console.table(pokemonList)),
         tap((response) => this.log(response)),
         // catchError((error) => {
@@ -33,7 +34,7 @@ constructor(private http: HttpClient) {
         // })
         catchError((error) => this.handleError(error, []))
     );
-    // httpCLient d'angular par défaut renvoie des flux qui oeuvent être typé, la requête get contient un tab de pokemon et on passe une URL vers une API
+    // httpCLient d'angular par défaut renvoie des flux qui peuvent être typé, la requête get contient un tab de pokemon et on passe une URL vers une API
     // opérateur .pipe définir ce que l'on veut faire en plus du tmt de la requête: log resp et erreurs
     // req http get avec le client http angular et on reçoit un observable, on peut spécifier que la réponse contient une liste de pokémon. En pram de la méthode get URL, une fois qu'on a la réponse, on la log et si erreur log erreur et on retourne un tab vide
     // opérateur rxjs tap = équivalent console log adapté à un observable, il n'intervient pas sur la requête en elle même mais on va pouvoir venir faire des op à chaque nouvelles rep
