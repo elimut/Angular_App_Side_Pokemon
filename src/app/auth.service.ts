@@ -11,8 +11,8 @@ export class AuthService {
   redirectUrl: string;
   // si user demande à accèder à la liste des pokemons ou autre, et qu'il n'a pas le droit demande de co, et si co ok redir au bon endroit sur la page
 
-  login(name: string, password: string): Observable<boolean> {
-    const isLoggedIn = (name == "pikachu" && password =='pikachu');
+  login(username: string, password: string): Observable<boolean> {
+    const isLoggedIn = (username == "pikachu" && password =='pikachu');
     // recup rst pour savoir si user auth ou non, puis délègue dans le tps d'une scd et ensuite mise à jour ppt isLoggedIn
     return of(isLoggedIn).pipe
       (delay(1000),

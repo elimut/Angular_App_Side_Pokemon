@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent {
 
   message: string = 'Vous êtes déconnecté.';
-  name: string;
+  username: string;
   password: string;
   isLoggedIn: boolean;
   auth: AuthService;
@@ -41,7 +41,7 @@ export class LoginComponent {
 
   login() {
     this.message = 'Tentative de connexion en cours...';
-    this.auth.login(this.name, this.password)
+    this.auth.login(this.username, this.password)
       .subscribe({
         next: (isLoggedIn: any) => {
           this.setMessage();
