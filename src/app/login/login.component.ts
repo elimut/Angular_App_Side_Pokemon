@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent {
 
   constructor(
     public authService: AuthService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
     ) {
 
   }
@@ -41,7 +43,7 @@ export class LoginComponent {
     this.message = 'Tentative de connexion en cours...';
     this.auth.login(this.name, this.password)
       .subscribe({
-        next: isLoggedIn => {
+        next: (isLoggedIn: any) => {
           this.setMessage();
           if(isLoggedIn) {
             this.router.navigate(['/pokemons']);

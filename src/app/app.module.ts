@@ -15,9 +15,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PokemonModule } from './pokemon/pokemon.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService } from './in-memory-data.service';
 import { LoginComponent } from './login/login.component';
+
 
 
 @NgModule({
@@ -29,14 +30,14 @@ import { LoginComponent } from './login/login.component';
     // ListPokemonComponent,
     // DetailPokemonComponent,
     PageNotFoundComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     // déclaration ds éléments nécessaires au module mais qui sont d'autres modules 
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false}),
+    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false}),
     PokemonModule,
     AppRoutingModule
   ],

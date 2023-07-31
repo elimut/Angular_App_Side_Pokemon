@@ -13,10 +13,12 @@ import { Observable, catchError, of, tap } from 'rxjs';
 )
 export class PokemonService {
 
-constructor(private http: HttpClient) {
+  private baseURL: any = 'https://localhost:3000/';
+  
 
-}
-private baseUrl = 'http://localhost:8080/';
+  constructor(private http: HttpClient) {
+
+  }
 
   // getPokemonList(): Pokemon [] {
   //   // renvoie model
@@ -24,10 +26,10 @@ private baseUrl = 'http://localhost:8080/';
   //   // liste des pokémons, réencapsulée dans un service pour profiter du syst d'injection de dépendance
   // }
   getPokemonList(): Observable<Pokemon[]> {
-    // réception d'une donnée qui va rriver dans le temps qui contient un tab de pokemon, on ne retourne pas directement les pokémons. On retourne un flux
-    return this.http.get<Pokemon[]>('https://localhost:3000/api/pokemons').pipe(
+    // réception d'une donnée qui va arriver dans le temps qui contient un tab de pokemon, on ne retourne pas directement les pokémons. On retourne un flux
+    return this.http.get<Pokemon[]>(this.baseURL+`api/pokemons`).pipe(
         // tap((pokemonList) => console.table(pokemonList)),
-        tap((response) => this.log(response)),
+        tap((response: any) => this.log(response)),
         // catchError((error) => {
         //   console.log(error);
         //   return of([]);
@@ -45,9 +47,9 @@ private baseUrl = 'http://localhost:8080/';
   //   return POKEMONS.find(pokemon => pokemon.id == pokemonId);
   // }
   getPokemonById(pokemonId: number): Observable<Pokemon|undefined> {
-    return this.http.get<Pokemon>(`api/pokemons/${pokemonId}`).pipe(
+    return this.http.get<Pokemon>(this.baseURL+`api/pokemons/${pokemonId}`).pipe(
       // tap((pokemon) => console.table(pokemon)),
-      tap((response) => this.log(response)),
+      tap((response: any) => this.log(response)),
         // catchError((error) => {
         //   console.log(error);
         //   return of(undefined);
@@ -60,8 +62,8 @@ private baseUrl = 'http://localhost:8080/';
     if(term.length <= 1){
       return of([]);// retourne un flux sous forme de tab vide
     }
-    return this.http.get<Pokemon[]>(`api/pokemons/?name=${term}`).pipe( //requête sur une propriété du pokemon, ici name
-      tap((response) => this.log(response)),
+    return this.http.get<Pokemon[]>(this.baseURL+`api/pokemons/?name=${term}`).pipe( //requête sur une propriété du pokemon, ici name
+      tap((response: any) => this.log(response)),
       catchError((error) => this.handleError(error, []))
     ); 
   }
@@ -74,9 +76,9 @@ private baseUrl = 'http://localhost:8080/';
       headers: new HttpHeaders({ 'Content-Type': 'application/json'})
     };
 
-    return this.http.put('api/pokemons', pokemon, httpOptions).pipe(
+    return this.http.put(this.baseURL+'api/pokemons', pokemon, httpOptions).pipe(
       // url, corps de la requête et headers pour dire que l'on transmet tout cela en json
-      tap((response) => this.log(response)),
+      tap((response: any) => this.log(response)),
       // catchError((error) => this.handleError(error, undefined))
       catchError((error) => this.handleError(error, null))
     );
@@ -85,8 +87,8 @@ private baseUrl = 'http://localhost:8080/';
   }
 
   deletePokemonById(pokemonId: number): Observable<null> {
-    return this.http.delete(`api/pokemons/${pokemonId}`).pipe(
-      tap((response) => this.log(response)),
+    return this.http.delete(this.baseURL+`api/pokemons/${pokemonId}`).pipe(
+      tap((response: any) => this.log(response)),
       // catchError((error) => this.handleError(error, undefined))
       catchError((error) => this.handleError(error, null))
     );
@@ -98,8 +100,8 @@ private baseUrl = 'http://localhost:8080/';
         headers: new HttpHeaders({ 'Content-Type': 'application/json'})
       };
 
-      return this.http.post<Pokemon>('api/pokemons', pokemon, httpOptions).pipe( //cats le return en Pokemon, cette méthode retourne un objet de type Poemon
-        tap((response) => this.log(response)),
+      return this.http.post<Pokemon>(this.baseURL+'api/pokemons', pokemon, httpOptions).pipe( //cats le return en Pokemon, cette méthode retourne un objet de type Poemon
+        tap((response: any) => this.log(response)),
         catchError((error) => this.handleError(error, null))
       );
   }

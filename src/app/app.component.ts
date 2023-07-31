@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { switchMap, tap } from 'rxjs';
 // import { Component, OnInit } from '@angular/core';
 // import interface OnInit
 // import { POKEMONS } from './mock-pokemon-list'
@@ -18,7 +20,48 @@ import { Component } from '@angular/core';
   // pour écrire le template dans un fichier à part. html et ts dans même fichier pas besoin de chemin relatif
 })
 // la vue est définie dans le template du composant, la logique de la vue sera pilotée par la classe du composant qui est défini plus bas. Si maj dans la ppt, le template se met à jour.
-export class AppComponent {}
+export class AppComponent implements OnInit {
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json"
+    })
+  };
+
+  constructor(private http: HttpClient) {
+
+  }
+
+  ngOnInit() {
+    this.http
+      .get("https://localhost:3000/")
+      .subscribe((res: any) => console.log(res));
+  this.http
+    .post(
+      "https://localhost:3000/api/login",
+      { username: "aso", password:"aso" },
+    this.httpOptions
+    )
+    .pipe(
+      tap((res: any) => console.log(res)),
+      switchMap((res: any) => this.fetchPokemonlist(res.token))
+    )
+    .subscribe((res: any) => console.log(res));
+  }
+  
+  fetchPokemonlist(token: string) {
+    const httpOptionsWithJWT = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      })
+    };
+
+    return this.http.get(
+      "https://localhost:3000/api/pokemons",
+      httpOptionsWithJWT
+    );
+  }
+}
 // export class AppComponent implements OnInit {
   // implements interface OnInit
   // title = 'Application de pokémons';

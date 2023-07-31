@@ -855,13 +855,14 @@ FormsModule et ReactivFormsModule.
 
 FormsModule développe une partie importante du formulaire dans le template, on parle de template driven forms(débutant, petit formulaire).
 Le second, plus centré sur le développement du formulaire côté composant.
-Ils proveinnent de la même librairie @angular-forms.
+Ils proviennent de la même librairie @angular-forms.
 
 Il y a deux directives: ngForm et ngModel, elles viennent du module forms.
+
 ### La directive ngForm
 
 A partir du moment où le module a été importé, la directive ngForm devient actoive sur toutes les balises form disponible dans le module où est importé le formsModule.
-Nous n'avon spas besoin d'ajouter d'autres sélecteurs dans les templates pour chaque formulaire.
+Nous n'avons pas besoin d'ajouter d'autres sélecteurs dans les templates pour chaque formulaire.
 Pour chaque formulaire où elle est appliquée la directive ngForm va créer une instance d'un objet nommé formGroup au niveau global du formulaire.
 
 notification lors de la soumission ,et informations des erreurs user.
@@ -1438,3 +1439,5 @@ Création d'un composant qui va venir matcher avec la nouvelle route avec un for
 ng generate component login --inline-template=false
 
 Déclarer le nouveau composant dans app-routing
+
+ng generate component user --inline-template=false 

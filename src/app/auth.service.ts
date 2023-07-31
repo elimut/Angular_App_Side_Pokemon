@@ -16,7 +16,7 @@ export class AuthService {
     // recup rst pour savoir si user auth ou non, puis délègue dans le tps d'une scd et ensuite mise à jour ppt isLoggedIn
     return of(isLoggedIn).pipe
       (delay(1000),
-      tap(isLoggedIn => this.isLoggedIn = isLoggedIn)
+      tap((isLoggedIn: boolean) => this.isLoggedIn = isLoggedIn)
     // simuler délai serveur
       );
   }
