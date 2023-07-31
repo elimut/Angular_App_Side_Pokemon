@@ -34,11 +34,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.http
-      .get("https://localhost:3000/")
+      .get("http://localhost:3000/")
       .subscribe((res: any) => console.log(res));
   this.http
     .post(
-      "https://localhost:3000/api/login",
+      "http://localhost:3000/api/login",
       { username: "aso", password:"aso" },
     this.httpOptions
     )
@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
     };
 
     return this.http.get(
-      "https://localhost:3000/api/pokemons",
+      "http://localhost:3000/api/pokemons",
       httpOptionsWithJWT
     );
   }
