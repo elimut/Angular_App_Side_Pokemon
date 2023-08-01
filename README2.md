@@ -1440,4 +1440,23 @@ ng generate component login --inline-template=false
 
 Déclarer le nouveau composant dans app-routing
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------
+Nos requêtes sont envoyées à l'API REST depuis la méthode ngOnInit du cycle de vie du composant racine de l'appli.
+Librairie http utilisé, on passe par le client http interne à angular => http client module au niveau du module racine,
+et dans app component injection.
+
+
 ng generate component user --inline-template=false 
