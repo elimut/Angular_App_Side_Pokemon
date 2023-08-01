@@ -27,6 +27,9 @@ export class AppComponent implements OnInit {
       "Content-Type": "application/json"
     })
   };
+  // déla en-tête http dans les propriétés du composant.
+  // on utilise httpHeaders interne à angular
+  // on enchapine pas les requetes par ordre chronologique comme avec les promesses
 
   constructor(private http: HttpClient) {
 
@@ -34,22 +37,26 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.http
+    // méthode get du client http, renvoie un flux d'où abonnement avec subscribr
       .get("http://localhost:3000/")
       .subscribe((res: any) => console.log(res));
+    // get JWT token
   this.http
     .post(
       "http://localhost:3000/api/login",
-      { username: "aso", password:"aso" },
+      { username: "", password:"" },
     this.httpOptions
     )
     .pipe(
       tap((res: any) => console.log(res)),
       switchMap((res: any) => this.fetchPokemonlist(res.token))
     )
+    // switchMap prg réactive défini un ordre d'exécution entre deux flux
     .subscribe((res: any) => console.log(res));
   }
   
   fetchPokemonlist(token: string) {
+    // prog réactive et objet httpHeaders
     const httpOptionsWithJWT = {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`

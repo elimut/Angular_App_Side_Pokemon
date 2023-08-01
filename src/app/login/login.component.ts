@@ -6,8 +6,6 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styles: [
-  ]
 })
 export class LoginComponent {
 
@@ -21,9 +19,7 @@ export class LoginComponent {
     public authService: AuthService,
     private router: Router,
     private http: HttpClient
-    ) {
-
-  }
+    ) {}
 
   ngOnInit(): void {
     this.auth = this.authService;
