@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
     };
 
     return this.http.get(
-      "http://localhost:3000/api/pokemons",
+      "http://localhost:8080/api/pokemons",
       httpOptionsWithJWT
     );
   }
