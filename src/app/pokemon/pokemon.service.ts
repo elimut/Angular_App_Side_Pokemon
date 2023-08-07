@@ -13,7 +13,7 @@ import { Observable, catchError, of, tap } from 'rxjs';
 )
 export class PokemonService {
 
-  private baseURL: any = 'http://localhost:3000/';
+  private baseURL: any = 'http://localhost:8080/';
   
 
   constructor(private http: HttpClient) {
@@ -135,5 +135,4 @@ export class PokemonService {
       'Psy'
     ]; 
   }
-  
 }
