@@ -38,12 +38,12 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.http
     // méthode get du client http, renvoie un flux d'où abonnement avec subscribr
-      .get("http://localhost:3000/")
+      .get("http://localhost:8080/")
       .subscribe((res: any) => console.log(res));
     // get JWT token
   this.http
     .post(
-      "http://localhost:3000/api/login",
+      "http://localhost:8080/api/login",
       { username: "", password:"" },
     this.httpOptions
     )
